@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Sriza 🎉</title>
+<style>
+body {
+  margin:0;
+  background:#000;
+  color:white;
+  text-align:center;
+  font-family: 'Segoe UI', sans-serif;
+  overflow:hidden;
+}
+.screen {display:none; padding:40px;}
+.active {display:block;}
+button {
+  padding:15px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  background:pink;
+  cursor:pointer;
+}
+.heart {
+  position:fixed;
+  color:red;
+  animation: fall 3s linear infinite;
+}
+@keyframes fall {
+  from {top:-10%;}
+  to {top:110%;}
+}
+</style>
+</head>
 
+<body>
+
+<!-- Screen 1 -->
+<div id="cake" class="screen active">
+  <h1>🎂 Blow the candles 🎂</h1>
+  <p>(Tap anywhere)</p>
+</div>
+
+<!-- Screen 2 -->
+<div id="wish" class="screen">
+  <h1>🎆 Happy Birthday Sriza 🎆</h1>
+  <button onclick="next()">There’s a surprise for you 💝</button>
+</div>
+
+<!-- Screen 3 -->
+<div id="balloon" class="screen">
+  <h1>🎈 Click the balloon 🎈</h1>
+  <button onclick="burst()">POP 🎈</button>
+</div>
+
+<!-- Screen 4 -->
+<div id="final" class="screen">
+  <h1>💖 Happy Birthday My Love 💖</h1>
+  <p>
+    You are my smile, my peace, my forever.<br>
+    Every heartbeat of mine whispers your name, Sriza 🌸
+  </p>
+</div>
+
+<audio id="music" src="https://www.soundjay.com/human/sounds/happy-birthday-song-01.mp3"></audio>
+
+<script>
+let music = document.getElementById("music");
+
+document.body.onclick = () => {
+  if(document.getElementById("cake").classList.contains("active")){
+    music.play();
+    document.getElementById("cake").classList.remove("active");
+    document.getElementById("wish").classList.add("active");
+  }
+};
+
+function next(){
+  document.getElementById("wish").classList.remove("active");
+  document.getElementById("balloon").classList.add("active");
+}
+
+function burst(){
+  document.getElementById("balloon").classList.remove("active");
+  document.getElementById("final").classList.add("active");
+  for(let i=0;i<30;i++){
+    let h=document.createElement("div");
+    h.innerHTML="❤️";
+    h.className="heart";
+    h.style.left=Math.random()*100+"%";
+    h.style.fontSize=Math.random()*30+20+"px";
+    document.body.appendChild(h);
+  }
+}
+</script>
+
+</body>
+</html>
